@@ -37,7 +37,7 @@ export async function POST(req: NextRequest) {
       if (msg.role === "user") {
         conversationText += `You said: ${msg.content}\n\n`
       } else if (msg.role === "assistant") {
-        conversationText += `AI Insurance Chatbot responded with: ${msg.content}\n\n`
+        conversationText += `SCOPE AI ChatBot responded with: ${msg.content}\n\n`
       }
     }
 
@@ -49,22 +49,28 @@ export async function POST(req: NextRequest) {
     // Select voice based on language
     let voiceId = "21m00Tcm4TlvDq8ikWAM" // Default English voice (Rachel)
 
-    // Map languages to appropriate ElevenLabs voices
+    // Map languages to appropriate ElevenLabs voices for European languages
     // You can customize these with your preferred voices from ElevenLabs
     switch (language) {
+      case "Italian":
+        voiceId = "pNInz6obpgDQGcFmaJgB" // Bella (Italian)
+        break
       case "Spanish":
-        voiceId = "ZQe5CZNOzWyzPSCn5a3c" // Antonio
+        voiceId = "ZQe5CZNOzWyzPSCn5a3c" // Antonio (Spanish)
         break
       case "French":
-        voiceId = "XrExE9yKIg1WjnnlVkGX" // Gigi
+        voiceId = "XrExE9yKIg1WjnnlVkGX" // Gigi (French)
         break
       case "German":
-        voiceId = "oWAxZDx7w5VEj9dCyTzz" // Hans
+        voiceId = "oWAxZDx7w5VEj9dCyTzz" // Hans (German)
         break
-      case "Hindi":
-      case "Mandarin":
-      case "Arabic":
-        // For languages without specific voices, use a multilingual voice
+      case "Portuguese":
+        voiceId = "ErXwobaYiN019PkySvjV" // Antoni (Multilingual with Portuguese)
+        break
+      case "Dutch":
+      case "Polish":
+      case "Greek":
+        // For other European languages without specific voices, use a multilingual voice
         voiceId = "VR6AewLTigWG4xSOukaG" // Adam (multilingual)
         break
     }
